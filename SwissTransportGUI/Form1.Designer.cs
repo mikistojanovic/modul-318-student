@@ -36,17 +36,17 @@
             this.txtStartstation = new System.Windows.Forms.TextBox();
             this.lbAusgabe = new System.Windows.Forms.ListBox();
             this.lblZeit = new System.Windows.Forms.Label();
-            this.lblBeliebigeStation = new System.Windows.Forms.Label();
             this.lblDatum = new System.Windows.Forms.Label();
             this.lbZielstation = new System.Windows.Forms.ListBox();
             this.lbStartstation = new System.Windows.Forms.ListBox();
             this.lblZielstation = new System.Windows.Forms.Label();
             this.lblStartstation = new System.Windows.Forms.Label();
             this.btnSuchen = new System.Windows.Forms.Button();
+            this.lblBeliebigeStation = new System.Windows.Forms.Label();
             this.gbAbfahrtstaffel = new System.Windows.Forms.GroupBox();
-            this.btnAbfahrtstaffel = new System.Windows.Forms.Button();
-            this.lbAbfahrtstaffel = new System.Windows.Forms.ListBox();
             this.txtBeliebigeStation = new System.Windows.Forms.TextBox();
+            this.lbAbfahrtstaffel = new System.Windows.Forms.ListBox();
+            this.btnAbfahrtstaffel = new System.Windows.Forms.Button();
             this.gbFahrplan.SuspendLayout();
             this.gbAbfahrtstaffel.SuspendLayout();
             this.SuspendLayout();
@@ -132,16 +132,6 @@
             this.lblZeit.TabIndex = 21;
             this.lblZeit.Text = "Zeit";
             // 
-            // lblBeliebigeStation
-            // 
-            this.lblBeliebigeStation.AutoSize = true;
-            this.lblBeliebigeStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBeliebigeStation.Location = new System.Drawing.Point(120, 21);
-            this.lblBeliebigeStation.Name = "lblBeliebigeStation";
-            this.lblBeliebigeStation.Size = new System.Drawing.Size(152, 20);
-            this.lblBeliebigeStation.TabIndex = 20;
-            this.lblBeliebigeStation.Text = "Beliebige Station";
-            // 
             // lblDatum
             // 
             this.lblDatum.AutoSize = true;
@@ -199,6 +189,16 @@
             this.btnSuchen.Text = "Suchen";
             this.btnSuchen.UseVisualStyleBackColor = true;
             // 
+            // lblBeliebigeStation
+            // 
+            this.lblBeliebigeStation.AutoSize = true;
+            this.lblBeliebigeStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBeliebigeStation.Location = new System.Drawing.Point(120, 21);
+            this.lblBeliebigeStation.Name = "lblBeliebigeStation";
+            this.lblBeliebigeStation.Size = new System.Drawing.Size(152, 20);
+            this.lblBeliebigeStation.TabIndex = 20;
+            this.lblBeliebigeStation.Text = "Beliebige Station";
+            // 
             // gbAbfahrtstaffel
             // 
             this.gbAbfahrtstaffel.Controls.Add(this.txtBeliebigeStation);
@@ -212,14 +212,12 @@
             this.gbAbfahrtstaffel.TabStop = false;
             this.gbAbfahrtstaffel.Text = "Abfahrtstaffel";
             // 
-            // btnAbfahrtstaffel
+            // txtBeliebigeStation
             // 
-            this.btnAbfahrtstaffel.Location = new System.Drawing.Point(124, 80);
-            this.btnAbfahrtstaffel.Name = "btnAbfahrtstaffel";
-            this.btnAbfahrtstaffel.Size = new System.Drawing.Size(148, 53);
-            this.btnAbfahrtstaffel.TabIndex = 21;
-            this.btnAbfahrtstaffel.Text = "Abfahrtstaffel anzeigen";
-            this.btnAbfahrtstaffel.UseVisualStyleBackColor = true;
+            this.txtBeliebigeStation.Location = new System.Drawing.Point(6, 44);
+            this.txtBeliebigeStation.Name = "txtBeliebigeStation";
+            this.txtBeliebigeStation.Size = new System.Drawing.Size(365, 22);
+            this.txtBeliebigeStation.TabIndex = 23;
             // 
             // lbAbfahrtstaffel
             // 
@@ -230,12 +228,14 @@
             this.lbAbfahrtstaffel.Size = new System.Drawing.Size(365, 404);
             this.lbAbfahrtstaffel.TabIndex = 22;
             // 
-            // txtBeliebigeStation
+            // btnAbfahrtstaffel
             // 
-            this.txtBeliebigeStation.Location = new System.Drawing.Point(6, 44);
-            this.txtBeliebigeStation.Name = "txtBeliebigeStation";
-            this.txtBeliebigeStation.Size = new System.Drawing.Size(365, 22);
-            this.txtBeliebigeStation.TabIndex = 23;
+            this.btnAbfahrtstaffel.Location = new System.Drawing.Point(124, 80);
+            this.btnAbfahrtstaffel.Name = "btnAbfahrtstaffel";
+            this.btnAbfahrtstaffel.Size = new System.Drawing.Size(148, 53);
+            this.btnAbfahrtstaffel.TabIndex = 21;
+            this.btnAbfahrtstaffel.Text = "Abfahrtstaffel anzeigen";
+            this.btnAbfahrtstaffel.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

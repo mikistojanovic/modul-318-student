@@ -19,39 +19,30 @@ namespace SwissTransportGUI
         }
 
         //Methode um eine Station in der "Startstation" zu suchen
-        private void StationStart(string Stationsname)
+        private void StationSuchen(string Stationsname, ListBox listBoxName)
         {
+            listBoxName.Items.Clear();
+
             Transport t = new Transport();
 
             Stations myStations = t.GetStations(Stationsname);
 
             foreach(Station station in myStations.StationList)
             {
-                lbStartstation.Items.Add(station.Name);
+                listBoxName.Items.Add(station.Name);
             }
+
         }
 
-        //Methode um eine Station in der "Zielstation" zu suchen
-        private void StationZiel(string Stationsname)
-        {
-            Transport t = new Transport();
-
-            Stations myStations = t.GetStations(Stationsname);
-
-            foreach (Station station in myStations.StationList)
-            {
-                lbZielstation.Items.Add(station.Name);
-            }
-        }
 
         private void txtStartstation_TextChanged(object sender, EventArgs e)
         {
-            StationStart(txtStartstation.Text);
+            StationSuchen(txtStartstation.Text, lbStartstation);
         }
 
         private void txtZielstation_TextChanged(object sender, EventArgs e)
         {
-            StationZiel(txtZielstation.Text);
+            StationSuchen(txtZielstation.Text, lbZielstation);
         }
     }
 }
