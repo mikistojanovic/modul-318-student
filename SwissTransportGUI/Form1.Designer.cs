@@ -54,6 +54,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbFahrplan.SuspendLayout();
             this.gbAbfahrtstaffel.SuspendLayout();
             this.SuspendLayout();
@@ -101,7 +102,8 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader6});
             this.lvAusgabe.FullRowSelect = true;
             this.lvAusgabe.GridLines = true;
             this.lvAusgabe.Location = new System.Drawing.Point(7, 267);
@@ -257,6 +259,7 @@
             this.lbBeliebigeStation.Name = "lbBeliebigeStation";
             this.lbBeliebigeStation.Size = new System.Drawing.Size(365, 100);
             this.lbBeliebigeStation.TabIndex = 24;
+            this.lbBeliebigeStation.DoubleClick += new System.EventHandler(this.lbBeliebigestation_DoubleClick);
             // 
             // txtBeliebigeStation
             // 
@@ -264,6 +267,7 @@
             this.txtBeliebigeStation.Name = "txtBeliebigeStation";
             this.txtBeliebigeStation.Size = new System.Drawing.Size(365, 22);
             this.txtBeliebigeStation.TabIndex = 23;
+            this.txtBeliebigeStation.TextChanged += new System.EventHandler(this.txtBeliebigeStation_TextChanged);
             // 
             // lbAbfahrtstaffel
             // 
@@ -282,6 +286,7 @@
             this.btnAbfahrtstaffel.TabIndex = 21;
             this.btnAbfahrtstaffel.Text = "Abfahrtstaffel anzeigen";
             this.btnAbfahrtstaffel.UseVisualStyleBackColor = true;
+            this.btnAbfahrtstaffel.Click += new System.EventHandler(this.btnAbfahrtstaffel_Click);
             // 
             // columnHeader1
             // 
@@ -305,6 +310,11 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "Gleis";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Verspätung";
+            this.columnHeader6.Width = 90;
             // 
             // Form1
             // 
@@ -352,6 +362,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }
 

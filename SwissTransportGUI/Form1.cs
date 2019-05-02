@@ -29,15 +29,10 @@ namespace SwissTransportGUI
 
             foreach(Station station in myStations.StationList)
             {
-                listBoxName.Items.Add(station.Name);
+                StationListViewItem item = new StationListViewItem(station);
+                listBoxName.Items.Add(item);
             }
 
-        }
-
-        //Methode um Verbindung auszugeben
-        private void Ausgabe(ListView lvAusgabe)
-        {
-           
         }
 
         private void txtStartstation_TextChanged(object sender, EventArgs e)
@@ -48,6 +43,12 @@ namespace SwissTransportGUI
         private void txtZielstation_TextChanged(object sender, EventArgs e)
         {
             StationSuchen(txtZielstation.Text, lbZielstation);
+        }
+
+
+        private void txtBeliebigeStation_TextChanged(object sender, EventArgs e)
+        {
+            StationSuchen(txtBeliebigeStation.Text, lbBeliebigeStation);
         }
 
         //DoubleClick Event um die Startstation in die TextBox einzufügen
@@ -64,6 +65,14 @@ namespace SwissTransportGUI
             lbZielstation.Items.Clear();
         }
 
+        //DoubleClick Event um die beliebige Station in die TextBox einzufügen
+        private void lbBeliebigestation_DoubleClick(object sender, EventArgs e)
+        {
+            txtBeliebigeStation.Tag = lbBeliebigeStation.SelectedItems[0];
+            txtBeliebigeStation.Text = lbBeliebigeStation.SelectedItems[0].ToString(); 
+            lbBeliebigeStation.Items.Clear();
+        }
+
         //Button um die ausgefüllten Felder wieder zu löschen
         private void btnLoeschen_Click(object sender, EventArgs e)
         {
@@ -73,28 +82,28 @@ namespace SwissTransportGUI
             dateTimePicker1.Text = String.Empty;
             lvAusgabe.Items.Clear();
         }
-
+        
         //Button um nach den Verbindungen zu suchen
         private void btnSuchen_Click(object sender, EventArgs e)
         {
-            Connections verbindungen = VerbindungSuchen(txtStartstation.Text, txtZielstation.Text);
-            VerbindungAnzeigen(verbindungen);
+            Connections Verbindungen = VerbindungSuchen(txtStartstation.Text, txtZielstation.Text);
+            VerbindungAnzeigen(Verbindungen);
         }
 
         //Methode um Verbindungen zu suchen
         private Connections VerbindungSuchen(string fromStation, string toStation)
         {
-            Connections verbindungen = t.GetConnections(fromStation, toStation);
+            Connections Verbindungen = t.GetConnections(fromStation, toStation);
 
-            return verbindungen;
+            return Verbindungen;
         }
 
         //Methode um Verbindung zu suchen
-        private void VerbindungAnzeigen(Connections verbindungen)
+        private void VerbindungAnzeigen(Connections Verbindungen)
         {
             //Datum, Von, Nach, Gleis, Dauer
 
-            foreach(Connection c in verbindungen.ConnectionList)
+            foreach(Connection c in Verbindungen.ConnectionList)
             {
                 ListViewItem item = new ListViewItem();
                 DateTime Abfahrtszeit = Convert.ToDateTime(c.From.Departure);
@@ -103,9 +112,27 @@ namespace SwissTransportGUI
                 item.SubItems.Add(c.From.Station.Name);
                 item.SubItems.Add(c.To.Station.Name);
                 item.SubItems.Add(c.From.Platform);
+                item.SubItems.Add(c.From.Delay.ToString() + "min");
 
                 lvAusgabe.Items.Add(item);
             }
+        }
+
+        private void btnAbfahrtstaffel_Click(object sender, EventArgs e)
+        {
+            List<string> Abfahrtstaffel = new List<string>();
+
+            StationListViewItem item = txtBeliebigeStation.Tag as StationListViewItem;
+
+            StationBoardRoot sb = t.GetStationBoard(item.Station.Name, item.Station.Id);
+
+            foreach(StationBoard sTemp in sb.Entries)
+            {
+                Abfahrtstaffel.Add(sTemp.Name + "" + sTemp.Category + "" + sTemp.Number + "" + sTemp.To + "" + sTemp.Operator + "" + sTemp.Stop.Departure.ToShortTimeString());
+
+            }
+
+            lbAbfahrtstaffel.DataSource = Abfahrtstaffel;
         }
     }
 }
