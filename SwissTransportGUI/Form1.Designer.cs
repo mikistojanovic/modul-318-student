@@ -30,11 +30,12 @@
         {
             this.lblSwissTransport = new System.Windows.Forms.Label();
             this.gbFahrplan = new System.Windows.Forms.GroupBox();
+            this.lvAusgabe = new System.Windows.Forms.ListView();
+            this.btnLoeschen = new System.Windows.Forms.Button();
             this.txtZeit = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtZielstation = new System.Windows.Forms.TextBox();
             this.txtStartstation = new System.Windows.Forms.TextBox();
-            this.lbAusgabe = new System.Windows.Forms.ListBox();
             this.lblZeit = new System.Windows.Forms.Label();
             this.lblDatum = new System.Windows.Forms.Label();
             this.lbZielstation = new System.Windows.Forms.ListBox();
@@ -44,9 +45,15 @@
             this.btnSuchen = new System.Windows.Forms.Button();
             this.lblBeliebigeStation = new System.Windows.Forms.Label();
             this.gbAbfahrtstaffel = new System.Windows.Forms.GroupBox();
+            this.lbBeliebigeStation = new System.Windows.Forms.ListBox();
             this.txtBeliebigeStation = new System.Windows.Forms.TextBox();
             this.lbAbfahrtstaffel = new System.Windows.Forms.ListBox();
             this.btnAbfahrtstaffel = new System.Windows.Forms.Button();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbFahrplan.SuspendLayout();
             this.gbAbfahrtstaffel.SuspendLayout();
             this.SuspendLayout();
@@ -64,11 +71,15 @@
             // 
             // gbFahrplan
             // 
+            this.gbFahrplan.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.gbFahrplan.AutoSize = true;
+            this.gbFahrplan.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gbFahrplan.Controls.Add(this.lvAusgabe);
+            this.gbFahrplan.Controls.Add(this.btnLoeschen);
             this.gbFahrplan.Controls.Add(this.txtZeit);
             this.gbFahrplan.Controls.Add(this.dateTimePicker1);
             this.gbFahrplan.Controls.Add(this.txtZielstation);
             this.gbFahrplan.Controls.Add(this.txtStartstation);
-            this.gbFahrplan.Controls.Add(this.lbAusgabe);
             this.gbFahrplan.Controls.Add(this.lblZeit);
             this.gbFahrplan.Controls.Add(this.lblDatum);
             this.gbFahrplan.Controls.Add(this.lbZielstation);
@@ -78,17 +89,45 @@
             this.gbFahrplan.Controls.Add(this.btnSuchen);
             this.gbFahrplan.Location = new System.Drawing.Point(12, 56);
             this.gbFahrplan.Name = "gbFahrplan";
-            this.gbFahrplan.Size = new System.Drawing.Size(844, 563);
+            this.gbFahrplan.Size = new System.Drawing.Size(831, 564);
             this.gbFahrplan.TabIndex = 14;
             this.gbFahrplan.TabStop = false;
             this.gbFahrplan.Text = "Fahrplan";
+            // 
+            // lvAusgabe
+            // 
+            this.lvAusgabe.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.lvAusgabe.FullRowSelect = true;
+            this.lvAusgabe.GridLines = true;
+            this.lvAusgabe.Location = new System.Drawing.Point(7, 267);
+            this.lvAusgabe.Name = "lvAusgabe";
+            this.lvAusgabe.Size = new System.Drawing.Size(643, 276);
+            this.lvAusgabe.TabIndex = 28;
+            this.lvAusgabe.UseCompatibleStateImageBehavior = false;
+            this.lvAusgabe.View = System.Windows.Forms.View.Details;
+            // 
+            // btnLoeschen
+            // 
+            this.btnLoeschen.Location = new System.Drawing.Point(672, 279);
+            this.btnLoeschen.Name = "btnLoeschen";
+            this.btnLoeschen.Size = new System.Drawing.Size(153, 55);
+            this.btnLoeschen.TabIndex = 27;
+            this.btnLoeschen.Text = "Löschen";
+            this.btnLoeschen.UseVisualStyleBackColor = true;
+            this.btnLoeschen.Click += new System.EventHandler(this.btnLoeschen_Click);
             // 
             // txtZeit
             // 
             this.txtZeit.Location = new System.Drawing.Point(369, 222);
             this.txtZeit.Name = "txtZeit";
-            this.txtZeit.Size = new System.Drawing.Size(280, 22);
+            this.txtZeit.Size = new System.Drawing.Size(92, 22);
             this.txtZeit.TabIndex = 26;
+            this.txtZeit.Text = "z.B. 12:15";
             // 
             // dateTimePicker1
             // 
@@ -112,15 +151,6 @@
             this.txtStartstation.Size = new System.Drawing.Size(280, 22);
             this.txtStartstation.TabIndex = 23;
             this.txtStartstation.TextChanged += new System.EventHandler(this.txtStartstation_TextChanged);
-            // 
-            // lbAusgabe
-            // 
-            this.lbAusgabe.FormattingEnabled = true;
-            this.lbAusgabe.ItemHeight = 16;
-            this.lbAusgabe.Location = new System.Drawing.Point(6, 267);
-            this.lbAusgabe.Name = "lbAusgabe";
-            this.lbAusgabe.Size = new System.Drawing.Size(643, 276);
-            this.lbAusgabe.TabIndex = 22;
             // 
             // lblZeit
             // 
@@ -150,6 +180,7 @@
             this.lbZielstation.Name = "lbZielstation";
             this.lbZielstation.Size = new System.Drawing.Size(280, 100);
             this.lbZielstation.TabIndex = 18;
+            this.lbZielstation.DoubleClick += new System.EventHandler(this.lbZielstation_DoubleClick);
             // 
             // lbStartstation
             // 
@@ -159,6 +190,7 @@
             this.lbStartstation.Name = "lbStartstation";
             this.lbStartstation.Size = new System.Drawing.Size(280, 100);
             this.lbStartstation.TabIndex = 17;
+            this.lbStartstation.DoubleClick += new System.EventHandler(this.lbStartstation_DoubleClick);
             // 
             // lblZielstation
             // 
@@ -182,18 +214,19 @@
             // 
             // btnSuchen
             // 
-            this.btnSuchen.Location = new System.Drawing.Point(672, 80);
+            this.btnSuchen.Location = new System.Drawing.Point(672, 205);
             this.btnSuchen.Name = "btnSuchen";
             this.btnSuchen.Size = new System.Drawing.Size(153, 56);
             this.btnSuchen.TabIndex = 14;
             this.btnSuchen.Text = "Suchen";
             this.btnSuchen.UseVisualStyleBackColor = true;
+            this.btnSuchen.Click += new System.EventHandler(this.btnSuchen_Click);
             // 
             // lblBeliebigeStation
             // 
             this.lblBeliebigeStation.AutoSize = true;
             this.lblBeliebigeStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBeliebigeStation.Location = new System.Drawing.Point(120, 21);
+            this.lblBeliebigeStation.Location = new System.Drawing.Point(108, 21);
             this.lblBeliebigeStation.Name = "lblBeliebigeStation";
             this.lblBeliebigeStation.Size = new System.Drawing.Size(152, 20);
             this.lblBeliebigeStation.TabIndex = 20;
@@ -201,16 +234,29 @@
             // 
             // gbAbfahrtstaffel
             // 
+            this.gbAbfahrtstaffel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.gbAbfahrtstaffel.AutoSize = true;
+            this.gbAbfahrtstaffel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gbAbfahrtstaffel.Controls.Add(this.lbBeliebigeStation);
             this.gbAbfahrtstaffel.Controls.Add(this.txtBeliebigeStation);
             this.gbAbfahrtstaffel.Controls.Add(this.lbAbfahrtstaffel);
             this.gbAbfahrtstaffel.Controls.Add(this.btnAbfahrtstaffel);
             this.gbAbfahrtstaffel.Controls.Add(this.lblBeliebigeStation);
             this.gbAbfahrtstaffel.Location = new System.Drawing.Point(867, 56);
             this.gbAbfahrtstaffel.Name = "gbAbfahrtstaffel";
-            this.gbAbfahrtstaffel.Size = new System.Drawing.Size(377, 562);
+            this.gbAbfahrtstaffel.Size = new System.Drawing.Size(377, 564);
             this.gbAbfahrtstaffel.TabIndex = 21;
             this.gbAbfahrtstaffel.TabStop = false;
             this.gbAbfahrtstaffel.Text = "Abfahrtstaffel";
+            // 
+            // lbBeliebigeStation
+            // 
+            this.lbBeliebigeStation.FormattingEnabled = true;
+            this.lbBeliebigeStation.ItemHeight = 16;
+            this.lbBeliebigeStation.Location = new System.Drawing.Point(6, 72);
+            this.lbBeliebigeStation.Name = "lbBeliebigeStation";
+            this.lbBeliebigeStation.Size = new System.Drawing.Size(365, 100);
+            this.lbBeliebigeStation.TabIndex = 24;
             // 
             // txtBeliebigeStation
             // 
@@ -223,19 +269,42 @@
             // 
             this.lbAbfahrtstaffel.FormattingEnabled = true;
             this.lbAbfahrtstaffel.ItemHeight = 16;
-            this.lbAbfahrtstaffel.Location = new System.Drawing.Point(6, 139);
+            this.lbAbfahrtstaffel.Location = new System.Drawing.Point(6, 267);
             this.lbAbfahrtstaffel.Name = "lbAbfahrtstaffel";
-            this.lbAbfahrtstaffel.Size = new System.Drawing.Size(365, 404);
+            this.lbAbfahrtstaffel.Size = new System.Drawing.Size(365, 276);
             this.lbAbfahrtstaffel.TabIndex = 22;
             // 
             // btnAbfahrtstaffel
             // 
-            this.btnAbfahrtstaffel.Location = new System.Drawing.Point(124, 80);
+            this.btnAbfahrtstaffel.Location = new System.Drawing.Point(112, 191);
             this.btnAbfahrtstaffel.Name = "btnAbfahrtstaffel";
             this.btnAbfahrtstaffel.Size = new System.Drawing.Size(148, 53);
             this.btnAbfahrtstaffel.TabIndex = 21;
             this.btnAbfahrtstaffel.Text = "Abfahrtstaffel anzeigen";
             this.btnAbfahrtstaffel.UseVisualStyleBackColor = true;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Datum";
+            this.columnHeader1.Width = 90;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Zeit";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Von";
+            this.columnHeader3.Width = 120;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Nach";
+            this.columnHeader4.Width = 120;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Gleis";
             // 
             // Form1
             // 
@@ -263,7 +332,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox txtZielstation;
         private System.Windows.Forms.TextBox txtStartstation;
-        private System.Windows.Forms.ListBox lbAusgabe;
         private System.Windows.Forms.Label lblZeit;
         private System.Windows.Forms.Label lblDatum;
         private System.Windows.Forms.ListBox lbZielstation;
@@ -276,6 +344,14 @@
         private System.Windows.Forms.TextBox txtBeliebigeStation;
         private System.Windows.Forms.ListBox lbAbfahrtstaffel;
         private System.Windows.Forms.Button btnAbfahrtstaffel;
+        private System.Windows.Forms.Button btnLoeschen;
+        private System.Windows.Forms.ListBox lbBeliebigeStation;
+        private System.Windows.Forms.ListView lvAusgabe;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }
 
