@@ -29,8 +29,16 @@ namespace SwissTransportGUI
 
             foreach(Station station in myStations.StationList)
             {
-                StationListViewItem item = new StationListViewItem(station);
-                listBoxName.Items.Add(item);
+                try
+                {
+                    StationListViewItem item = new StationListViewItem(station);
+                    listBoxName.Items.Add(item);
+                }
+                catch
+                {
+
+                }
+
             }
 
         }
@@ -45,32 +53,33 @@ namespace SwissTransportGUI
             StationSuchen(txtZielstation.Text, lbZielstation);
         }
 
-
         private void txtBeliebigeStation_TextChanged(object sender, EventArgs e)
         {
             StationSuchen(txtBeliebigeStation.Text, lbBeliebigeStation);
         }
 
+        private void StationWaehlen(TextBox Textbox, ListBox Listbox)
+        {
+            Textbox.Text = Listbox.SelectedItems[0].ToString();
+            Listbox.Items.Clear();
+        }
         //DoubleClick Event um die Startstation in die TextBox einzufügen
         private void lbStartstation_DoubleClick(object sender, EventArgs e)
         {
-            txtStartstation.Text = lbStartstation.SelectedItems[0].ToString();
-            lbStartstation.Items.Clear();
+            StationWaehlen(txtStartstation, lbStartstation);
         }
 
         //DoubleClick Event um die Zielstation in die TextBox einzufügen
         private void lbZielstation_DoubleClick(object sender, EventArgs e)
         {
-            txtZielstation.Text = lbZielstation.SelectedItems[0].ToString();
-            lbZielstation.Items.Clear();
+            StationWaehlen(txtZielstation, lbZielstation);
         }
 
         //DoubleClick Event um die beliebige Station in die TextBox einzufügen
         private void lbBeliebigestation_DoubleClick(object sender, EventArgs e)
         {
             txtBeliebigeStation.Tag = lbBeliebigeStation.SelectedItems[0];
-            txtBeliebigeStation.Text = lbBeliebigeStation.SelectedItems[0].ToString(); 
-            lbBeliebigeStation.Items.Clear();
+            StationWaehlen(txtBeliebigeStation, lbBeliebigeStation);
         }
 
         //Button um die ausgefüllten Felder wieder zu löschen
@@ -78,16 +87,23 @@ namespace SwissTransportGUI
         {
             txtStartstation.Text = String.Empty;
             txtZielstation.Text = String.Empty;
-            txtZeit.Text = String.Empty;
-            dateTimePicker1.Text = String.Empty;
             lvAusgabe.Items.Clear();
         }
         
         //Button um nach den Verbindungen zu suchen
         private void btnSuchen_Click(object sender, EventArgs e)
         {
-            Connections Verbindungen = VerbindungSuchen(txtStartstation.Text, txtZielstation.Text);
-            VerbindungAnzeigen(Verbindungen);
+            try
+            {
+                lvAusgabe.Items.Clear();
+                Connections Verbindungen = VerbindungSuchen(txtStartstation.Text, txtZielstation.Text);
+                VerbindungAnzeigen(Verbindungen);
+            }
+            catch
+            {
+
+            }
+
         }
 
         //Methode um Verbindungen zu suchen
@@ -101,7 +117,7 @@ namespace SwissTransportGUI
         //Methode um Verbindung zu suchen
         private void VerbindungAnzeigen(Connections Verbindungen)
         {
-            //Datum, Von, Nach, Gleis, Dauer
+            //Datum, Zeit, Von, Nach, Gleis, Verspätung
 
             foreach(Connection c in Verbindungen.ConnectionList)
             {
@@ -112,27 +128,84 @@ namespace SwissTransportGUI
                 item.SubItems.Add(c.From.Station.Name);
                 item.SubItems.Add(c.To.Station.Name);
                 item.SubItems.Add(c.From.Platform);
-                item.SubItems.Add(c.From.Delay.ToString() + "min");
+                item.SubItems.Add(c.From.Delay.ToString() + " min");
 
                 lvAusgabe.Items.Add(item);
             }
         }
 
+        //Button für das Abfragen und Anzeigen der Abfahrtstaffel
         private void btnAbfahrtstaffel_Click(object sender, EventArgs e)
         {
-            List<string> Abfahrtstaffel = new List<string>();
-
-            StationListViewItem item = txtBeliebigeStation.Tag as StationListViewItem;
-
-            StationBoardRoot sb = t.GetStationBoard(item.Station.Name, item.Station.Id);
-
-            foreach(StationBoard sTemp in sb.Entries)
+            try
             {
-                Abfahrtstaffel.Add(sTemp.Name + "" + sTemp.Category + "" + sTemp.Number + "" + sTemp.To + "" + sTemp.Operator + "" + sTemp.Stop.Departure.ToShortTimeString());
+                List<string> Abfahrtstaffel = new List<string>();
+
+                StationListViewItem item = txtBeliebigeStation.Tag as StationListViewItem;
+
+                StationBoardRoot sb = t.GetStationBoard(item.Station.Name, item.Station.Id);
+
+                foreach (StationBoard sTemp in sb.Entries)
+                {
+                    Abfahrtstaffel.Add(sTemp.Category + "  " + sTemp.Number + "  " + sTemp.To + "  " + sTemp.Stop.Departure.ToShortTimeString());
+                }
+                lbAbfahrtstaffel.DataSource = Abfahrtstaffel;
+            }
+            catch
+            {
+
+            }
+        }
+
+        //Tastenfunktionen
+        private void KeyBewegen(KeyEventArgs e, ListBox Listbox, TextBox Textbox)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Down)
+                {
+                    Listbox.SelectedIndex++;
+                }
+
+                else if (e.KeyCode == Keys.Up)
+                {
+                    Listbox.SelectedIndex--;
+                }
+
+                else if (e.KeyCode == Keys.Enter)
+                {
+                    StationWaehlen(Textbox, Listbox);
+                }
 
             }
 
-            lbAbfahrtstaffel.DataSource = Abfahrtstaffel;
+            catch
+            {
+
+            }
+        }
+
+        private void BewegenStart(object sender, KeyEventArgs e)
+        {
+            KeyBewegen(e, lbStartstation, txtStartstation);
+        }
+
+        private void BewegenZiel(object sender, KeyEventArgs e)
+        {
+            KeyBewegen(e, lbZielstation, txtZielstation);
+        }
+
+        private void BewegenBeliebigeStation(object sender, KeyEventArgs e)
+        {
+            KeyBewegen(e, lbBeliebigeStation, txtBeliebigeStation);
+        }
+
+        //Button für die Reverse-Funktion
+        private void btnWechseln_Click(object sender, EventArgs e)
+        {
+            string Wechseln = txtStartstation.Text;
+            txtStartstation.Text = txtZielstation.Text;
+            txtZielstation.Text = Wechseln;
         }
     }
 }
