@@ -86,7 +86,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1224, 667);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Fahrplan";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // gbAbfahrtstaffel
@@ -226,9 +226,8 @@
             this.lblSwissTransport.ForeColor = System.Drawing.Color.Black;
             this.lblSwissTransport.Location = new System.Drawing.Point(24, 15);
             this.lblSwissTransport.Name = "lblSwissTransport";
-            this.lblSwissTransport.Size = new System.Drawing.Size(307, 44);
+            this.lblSwissTransport.Size = new System.Drawing.Size(0, 44);
             this.lblSwissTransport.TabIndex = 22;
-            this.lblSwissTransport.Text = "Swiss Transport";
             // 
             // lvAusgabe
             // 
@@ -368,7 +367,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1224, 667);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Google Maps";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // webBrowser1
