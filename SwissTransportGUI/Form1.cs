@@ -24,13 +24,13 @@ namespace SwissTransportGUI
         Transport t = new Transport();
 
         //Methode um eine Station in der "Startstation" zu suchen
-        private void StationSuchen(string Stationsname, ListBox listBoxName)
+        private void StationSuchen(string stationsName, ListBox listBoxName)
         {
             listBoxName.Items.Clear();
 
-            Stations myStations = t.GetStations(Stationsname);
+            Stations meineStationen = t.GetStations(stationsName);
 
-            foreach(Station station in myStations.StationList)
+            foreach(Station station in meineStationen.StationList)
             {
                 try
                 {
@@ -60,10 +60,10 @@ namespace SwissTransportGUI
         }
 
         //Methode um eine Station aus der Listbox zu auszuwählen
-        private void StationWaehlen(TextBox Textbox, ListBox Listbox)
+        private void StationWaehlen(TextBox textBox, ListBox listBox)
         {
-            Textbox.Text = Listbox.SelectedItems[0].ToString();
-            Listbox.Items.Clear();
+            textBox.Text = listBox.SelectedItems[0].ToString();
+            listBox.Items.Clear();
         }
 
         //DoubleClick Event um die Startstation in die TextBox einzufügen
@@ -110,22 +110,22 @@ namespace SwissTransportGUI
         }
 
         //Methode um Verbindungen zu suchen
-        private Connections VerbindungSuchen(string fromStation, string toStation, string time)
+        private Connections VerbindungSuchen(string vonStation, string nachStation, string time)
         {
-            Connections Verbindungen = t.GetConnections(fromStation, toStation, time);
+            Connections Verbindungen = t.GetConnections(vonStation, nachStation, time);
             return Verbindungen;
         }
 
         //Methode um Verbindung zu suchen
-        private void VerbindungAnzeigen(Connections Verbindungen)
+        private void VerbindungAnzeigen(Connections verbindungen)
         {
             //Datum, Zeit, Von, Nach, Gleis, Verspätung
-            foreach(Connection c in Verbindungen.ConnectionList)
+            foreach(Connection c in verbindungen.ConnectionList)
             {
                 ListViewItem item = new ListViewItem();
-                DateTime Abfahrtszeit = Convert.ToDateTime(c.From.Departure);
-                item.Text = Abfahrtszeit.Date.ToString("dd.MM.yyyy");
-                item.SubItems.Add(Abfahrtszeit.TimeOfDay.ToString());
+                DateTime abfahrtszeit = Convert.ToDateTime(c.From.Departure);
+                item.Text = abfahrtszeit.Date.ToString("dd.MM.yyyy");
+                item.SubItems.Add(abfahrtszeit.TimeOfDay.ToString());
                 item.SubItems.Add(c.From.Station.Name);
                 item.SubItems.Add(c.To.Station.Name);
                 item.SubItems.Add(c.From.Platform);
@@ -139,7 +139,7 @@ namespace SwissTransportGUI
         {
             try
             {
-                List<string> Abfahrtstaffel = new List<string>();
+                List<string> abfahrtstaffel = new List<string>();
 
                 StationListViewItem item = txtBeliebigeStation.Tag as StationListViewItem;
 
@@ -147,9 +147,9 @@ namespace SwissTransportGUI
 
                 foreach (StationBoard sTemp in sb.Entries)
                 {
-                    Abfahrtstaffel.Add(sTemp.Category + "  " + sTemp.Number + "  " + sTemp.To + "  " + sTemp.Stop.Departure.ToShortTimeString());
+                    abfahrtstaffel.Add(sTemp.Category + "  " + sTemp.Number + "  " + sTemp.To + "  " + sTemp.Stop.Departure.ToShortTimeString());
                 }
-                lbAbfahrtstaffel.DataSource = Abfahrtstaffel;
+                lbAbfahrtstaffel.DataSource = abfahrtstaffel;
             }
             catch (Exception ex)
             {
@@ -158,23 +158,23 @@ namespace SwissTransportGUI
         }
 
         //Tastenfunktionen
-        private void KeyBewegen(KeyEventArgs e, ListBox Listbox, TextBox Textbox)
+        private void KeyBewegen(KeyEventArgs e, ListBox listBox, TextBox textBox)
         {
             try
             {
                 if(e.KeyCode == Keys.Down)
                 {
-                    Listbox.SelectedIndex++;
+                    listBox.SelectedIndex++;
                 }
 
                 else if (e.KeyCode == Keys.Up)
                 {
-                    Listbox.SelectedIndex--;
+                    listBox.SelectedIndex--;
                 }
 
                 else if (e.KeyCode == Keys.Enter)
                 {
-                    StationWaehlen(Textbox, Listbox);
+                    StationWaehlen(textBox, listBox);
                 }
             }
             catch (Exception ex)
@@ -201,9 +201,9 @@ namespace SwissTransportGUI
         //Button für die Reverse-Funktion
         private void btnWechseln_Click(object sender, EventArgs e)
         {
-            string Wechseln = txtStartstation.Text;
+            string wechseln = txtStartstation.Text;
             txtStartstation.Text = txtZielstation.Text;
-            txtZielstation.Text = Wechseln;
+            txtZielstation.Text = wechseln;
         }
 
         //Tabwechsel
@@ -227,9 +227,9 @@ namespace SwissTransportGUI
         }
 
         //Google Maps
-        private void GoogleMaps(string StationName)
+        private void GoogleMaps(string stationName)
         {
-            Station stations = t.GetStations(StationName).StationList.First();
+            Station stations = t.GetStations(stationName).StationList.First();
 
             string xcoordinate = stations.Coordinate.XCoordinate.ToString();
             string ycoordinate = stations.Coordinate.YCoordinate.ToString();

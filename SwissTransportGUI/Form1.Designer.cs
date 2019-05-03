@@ -39,6 +39,7 @@
             this.btnAbfahrtstaffel = new System.Windows.Forms.Button();
             this.lblBeliebigeStation = new System.Windows.Forms.Label();
             this.gbFahrplan = new System.Windows.Forms.GroupBox();
+            this.lblZeit = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnWechseln = new System.Windows.Forms.Button();
             this.lblSwissTransport = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.btnSuchen = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.lblZeit = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gbAbfahrtstaffel.SuspendLayout();
@@ -195,6 +195,16 @@
             this.gbFahrplan.Size = new System.Drawing.Size(835, 683);
             this.gbFahrplan.TabIndex = 23;
             this.gbFahrplan.TabStop = false;
+            // 
+            // lblZeit
+            // 
+            this.lblZeit.AutoSize = true;
+            this.lblZeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblZeit.Location = new System.Drawing.Point(28, 248);
+            this.lblZeit.Name = "lblZeit";
+            this.lblZeit.Size = new System.Drawing.Size(40, 20);
+            this.lblZeit.TabIndex = 30;
+            this.lblZeit.Text = "Zeit";
             // 
             // dateTimePicker1
             // 
@@ -380,16 +390,6 @@
             this.webBrowser1.Size = new System.Drawing.Size(1218, 661);
             this.webBrowser1.TabIndex = 0;
             // 
-            // lblZeit
-            // 
-            this.lblZeit.AutoSize = true;
-            this.lblZeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZeit.Location = new System.Drawing.Point(28, 248);
-            this.lblZeit.Name = "lblZeit";
-            this.lblZeit.Size = new System.Drawing.Size(40, 20);
-            this.lblZeit.TabIndex = 30;
-            this.lblZeit.Text = "Zeit";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -399,6 +399,7 @@
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "SwissTransport ";
             this.tabControl1.ResumeLayout(false);
