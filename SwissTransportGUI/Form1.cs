@@ -38,9 +38,7 @@ namespace SwissTransportGUI
                 {
 
                 }
-
             }
-
         }
 
         private void txtStartstation_TextChanged(object sender, EventArgs e)
@@ -63,6 +61,7 @@ namespace SwissTransportGUI
             Textbox.Text = Listbox.SelectedItems[0].ToString();
             Listbox.Items.Clear();
         }
+
         //DoubleClick Event um die Startstation in die TextBox einzufügen
         private void lbStartstation_DoubleClick(object sender, EventArgs e)
         {
@@ -96,21 +95,19 @@ namespace SwissTransportGUI
             try
             {
                 lvAusgabe.Items.Clear();
-                Connections Verbindungen = VerbindungSuchen(txtStartstation.Text, txtZielstation.Text);
+                Connections Verbindungen = VerbindungSuchen(txtStartstation.Text, txtZielstation.Text, dateTimePicker1.Text);
                 VerbindungAnzeigen(Verbindungen);
             }
             catch
             {
 
             }
-
         }
 
         //Methode um Verbindungen zu suchen
-        private Connections VerbindungSuchen(string fromStation, string toStation)
+        private Connections VerbindungSuchen(string fromStation, string toStation, string time)
         {
-            Connections Verbindungen = t.GetConnections(fromStation, toStation);
-
+            Connections Verbindungen = t.GetConnections(fromStation, toStation, time);
             return Verbindungen;
         }
 
@@ -118,7 +115,6 @@ namespace SwissTransportGUI
         private void VerbindungAnzeigen(Connections Verbindungen)
         {
             //Datum, Zeit, Von, Nach, Gleis, Verspätung
-
             foreach(Connection c in Verbindungen.ConnectionList)
             {
                 ListViewItem item = new ListViewItem();
@@ -176,9 +172,7 @@ namespace SwissTransportGUI
                 {
                     StationWaehlen(Textbox, Listbox);
                 }
-
             }
-
             catch
             {
 
@@ -206,6 +200,11 @@ namespace SwissTransportGUI
             string Wechseln = txtStartstation.Text;
             txtStartstation.Text = txtZielstation.Text;
             txtZielstation.Text = Wechseln;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -53,6 +53,8 @@
             this.lbAbfahrtstaffel = new System.Windows.Forms.ListBox();
             this.btnAbfahrtstaffel = new System.Windows.Forms.Button();
             this.btnWechseln = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
             this.gbFahrplan.SuspendLayout();
             this.gbAbfahrtstaffel.SuspendLayout();
             this.SuspendLayout();
@@ -74,6 +76,7 @@
             // 
             this.gbFahrplan.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.gbFahrplan.BackColor = System.Drawing.Color.White;
+            this.gbFahrplan.Controls.Add(this.dateTimePicker1);
             this.gbFahrplan.Controls.Add(this.btnWechseln);
             this.gbFahrplan.Controls.Add(this.lvAusgabe);
             this.gbFahrplan.Controls.Add(this.btnLoeschen);
@@ -102,7 +105,7 @@
             this.columnHeader6});
             this.lvAusgabe.FullRowSelect = true;
             this.lvAusgabe.GridLines = true;
-            this.lvAusgabe.Location = new System.Drawing.Point(30, 288);
+            this.lvAusgabe.Location = new System.Drawing.Point(30, 301);
             this.lvAusgabe.Name = "lvAusgabe";
             this.lvAusgabe.Size = new System.Drawing.Size(760, 294);
             this.lvAusgabe.TabIndex = 28;
@@ -176,7 +179,7 @@
             this.lbZielstation.ItemHeight = 16;
             this.lbZielstation.Location = new System.Drawing.Point(369, 102);
             this.lbZielstation.Name = "lbZielstation";
-            this.lbZielstation.Size = new System.Drawing.Size(252, 132);
+            this.lbZielstation.Size = new System.Drawing.Size(252, 84);
             this.lbZielstation.TabIndex = 18;
             this.lbZielstation.TabStop = false;
             this.lbZielstation.DoubleClick += new System.EventHandler(this.lbZielstation_DoubleClick);
@@ -188,7 +191,7 @@
             this.lbStartstation.ItemHeight = 16;
             this.lbStartstation.Location = new System.Drawing.Point(30, 102);
             this.lbStartstation.Name = "lbStartstation";
-            this.lbStartstation.Size = new System.Drawing.Size(256, 132);
+            this.lbStartstation.Size = new System.Drawing.Size(256, 84);
             this.lbStartstation.TabIndex = 17;
             this.lbStartstation.TabStop = false;
             this.lbStartstation.DoubleClick += new System.EventHandler(this.lbStartstation_DoubleClick);
@@ -238,6 +241,7 @@
             // 
             this.gbAbfahrtstaffel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.gbAbfahrtstaffel.BackColor = System.Drawing.Color.White;
+            this.gbAbfahrtstaffel.Controls.Add(this.button1);
             this.gbAbfahrtstaffel.Controls.Add(this.lbBeliebigeStation);
             this.gbAbfahrtstaffel.Controls.Add(this.txtBeliebigeStation);
             this.gbAbfahrtstaffel.Controls.Add(this.lbAbfahrtstaffel);
@@ -277,7 +281,7 @@
             this.lbAbfahrtstaffel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lbAbfahrtstaffel.FormattingEnabled = true;
             this.lbAbfahrtstaffel.ItemHeight = 16;
-            this.lbAbfahrtstaffel.Location = new System.Drawing.Point(32, 288);
+            this.lbAbfahrtstaffel.Location = new System.Drawing.Point(32, 303);
             this.lbAbfahrtstaffel.Name = "lbAbfahrtstaffel";
             this.lbAbfahrtstaffel.Size = new System.Drawing.Size(339, 292);
             this.lbAbfahrtstaffel.TabIndex = 22;
@@ -288,7 +292,7 @@
             this.btnAbfahrtstaffel.BackColor = System.Drawing.Color.White;
             this.btnAbfahrtstaffel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAbfahrtstaffel.Image = ((System.Drawing.Image)(resources.GetObject("btnAbfahrtstaffel.Image")));
-            this.btnAbfahrtstaffel.Location = new System.Drawing.Point(167, 213);
+            this.btnAbfahrtstaffel.Location = new System.Drawing.Point(122, 220);
             this.btnAbfahrtstaffel.Name = "btnAbfahrtstaffel";
             this.btnAbfahrtstaffel.Size = new System.Drawing.Size(75, 69);
             this.btnAbfahrtstaffel.TabIndex = 6;
@@ -306,6 +310,27 @@
             this.btnWechseln.UseVisualStyleBackColor = false;
             this.btnWechseln.Click += new System.EventHandler(this.btnWechseln_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "HH:mm";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(30, 241);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(256, 22);
+            this.dateTimePicker1.TabIndex = 29;
+            this.dateTimePicker1.Value = new System.DateTime(2019, 5, 3, 0, 0, 0, 0);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(216, 220);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 69);
+            this.button1.TabIndex = 25;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -318,6 +343,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.Text = "SwissTransport ";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.gbFahrplan.ResumeLayout(false);
             this.gbFahrplan.PerformLayout();
             this.gbAbfahrtstaffel.ResumeLayout(false);
@@ -352,6 +378,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Button btnWechseln;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
