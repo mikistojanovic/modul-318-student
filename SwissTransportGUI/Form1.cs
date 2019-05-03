@@ -16,6 +16,8 @@ namespace SwissTransportGUI
         public Form1()
         {
             InitializeComponent();
+
+            this.dateTimePicker1.Value = DateTime.Now;
         }
 
         Transport t = new Transport();
@@ -34,9 +36,9 @@ namespace SwissTransportGUI
                     StationListViewItem item = new StationListViewItem(station);
                     listBoxName.Items.Add(item);
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -86,6 +88,7 @@ namespace SwissTransportGUI
         {
             txtStartstation.Text = String.Empty;
             txtZielstation.Text = String.Empty;
+            dateTimePicker1.Text = String.Empty;
             lvAusgabe.Items.Clear();
         }
         
@@ -98,9 +101,9 @@ namespace SwissTransportGUI
                 Connections Verbindungen = VerbindungSuchen(txtStartstation.Text, txtZielstation.Text, dateTimePicker1.Text);
                 VerbindungAnzeigen(Verbindungen);
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -124,7 +127,6 @@ namespace SwissTransportGUI
                 item.SubItems.Add(c.From.Station.Name);
                 item.SubItems.Add(c.To.Station.Name);
                 item.SubItems.Add(c.From.Platform);
-                item.SubItems.Add(c.From.Delay.ToString() + " min");
 
                 lvAusgabe.Items.Add(item);
             }
@@ -147,9 +149,9 @@ namespace SwissTransportGUI
                 }
                 lbAbfahrtstaffel.DataSource = Abfahrtstaffel;
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -173,9 +175,9 @@ namespace SwissTransportGUI
                     StationWaehlen(Textbox, Listbox);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -202,9 +204,34 @@ namespace SwissTransportGUI
             txtZielstation.Text = Wechseln;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        //ChangeTab
+        private void ChangeTab(TabPage TabPageName)
         {
+            tabControl1.SelectTab(TabPageName);
+        }
 
+        //Button um die Tabs zu wechseln
+        private void btnStandort_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ChangeTab(tabPage2);
+                CreateGoogleMaps(txtBeliebigeStation.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Geben Sie bitte eine gültige Station ein.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        //CreateGoogleMaps
+        private void CreateGoogleMaps(string StationName)
+        {
+            Station stations = t.GetStations(StationName).StationList.First();
+
+            string xcoordinate = stations.Coordinate.XCoordinate.ToString();
+            string ycoordinate = stations.Coordinate.YCoordinate.ToString();
+            webBrowser1.Url = new System.Uri("https://www.google.com/maps?q=" + xcoordinate.Replace(",",".") + "," + ycoordinate.Replace(",", "."), System.UriKind.Absolute);
         }
     }
 }
