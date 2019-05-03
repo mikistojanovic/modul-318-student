@@ -17,6 +17,7 @@ namespace SwissTransportGUI
         {
             InitializeComponent();
 
+            //Die aktuelle Uhrzeit wird als Standard festgelegt
             this.dateTimePicker1.Value = DateTime.Now;
         }
 
@@ -58,6 +59,7 @@ namespace SwissTransportGUI
             StationSuchen(txtBeliebigeStation.Text, lbBeliebigeStation);
         }
 
+        //Methode um eine Station aus der Listbox zu auszuwählen
         private void StationWaehlen(TextBox Textbox, ListBox Listbox)
         {
             Textbox.Text = Listbox.SelectedItems[0].ToString();
@@ -204,8 +206,8 @@ namespace SwissTransportGUI
             txtZielstation.Text = Wechseln;
         }
 
-        //ChangeTab
-        private void ChangeTab(TabPage TabPageName)
+        //Tabwechsel
+        private void TabWechseln(TabPage TabPageName)
         {
             tabControl1.SelectTab(TabPageName);
         }
@@ -215,8 +217,8 @@ namespace SwissTransportGUI
         {
             try
             {
-                ChangeTab(tabPage2);
-                CreateGoogleMaps(txtBeliebigeStation.Text);
+                TabWechseln(tabPage2);
+                GoogleMaps(txtBeliebigeStation.Text);
             }
             catch
             {
@@ -224,8 +226,8 @@ namespace SwissTransportGUI
             }
         }
 
-        //CreateGoogleMaps
-        private void CreateGoogleMaps(string StationName)
+        //Google Maps
+        private void GoogleMaps(string StationName)
         {
             Station stations = t.GetStations(StationName).StationList.First();
 
